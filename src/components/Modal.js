@@ -14,7 +14,7 @@ const ModalComp = (props) => <Modal
     <Button
       variant='secondary'
       onClick={() => props.hide()}>
-    Close
+      {'Close'}
     </Button>
   </Modal.Footer>
 </Modal>

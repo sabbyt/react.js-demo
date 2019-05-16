@@ -1,15 +1,17 @@
 import React, {Component} from 'react'
-
-import ButtonComp from './components/Button'
-import ModalComp from './components/Modal'
+import { Link } from 'react-router-dom'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 
-class App extends Component {
+import ButtonComp from '../components/Button'
+import ModalComp from '../components/Modal'
+
+class Home extends Component {
   constructor (props) {
     super(props)
     this.state = {
       showModal: false,
-      modalText: ''
+      modalText: '',
+      color: 'black'
     }
   }
 
@@ -20,11 +22,13 @@ class App extends Component {
   handleButtonPress (modalText) {
     this.setState({
       showModal: true,
-      modalText
+      modalText,
+      color: modalText.toLowerCase()
     })
   }
 
   render () {
+    console.log('INITIAL STATE', this.state)
     return (
       <div className='App'>
         <Jumbotron>
@@ -42,6 +46,30 @@ class App extends Component {
               variant={'danger'}
               onPress={() => this.handleButtonPress('Red')} />
           </p>
+          <p>
+            <Link
+              to={{
+                pathname: '/blue',
+                state: { color: this.state.color, title: 'Blue' }
+              }}>
+              <ButtonComp
+                name={'Blue'}
+                variant={'primary'}
+                onPress={() => -1} />
+            </Link>
+          </p>
+          <p>
+            <Link
+              to={{
+                pathname: '/yellow',
+                state: { color: this.state.color, title: 'Yellow' }
+              }}>
+              <ButtonComp
+                name={'Yellow'}
+                variant={'warning'}
+                onPress={() => -1} />
+            </Link>
+          </p>
         </Jumbotron>
         <ModalComp
           title={this.state.modalText}
@@ -53,4 +81,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default Home

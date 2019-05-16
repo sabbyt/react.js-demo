@@ -27,7 +27,3 @@ class Greeting extends Component {
   }
 }
 export default Greeting
-
-// const Greeting = (props) => `Hello ${props.name}`
-
-// export default Greeting
